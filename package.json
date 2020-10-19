@@ -32,6 +32,12 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-datetime": "^3.0.4",
+    "react-dom": "^16.14.0",
+    "react-icons": "^3.11.0",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   }
 }

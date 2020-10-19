@@ -1,10 +1,24 @@
 import React from "react";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Header from "../Header";
+import LastThreeItemsSlider from "../LastThreeItemsSlider";
 
 import "./App.css";
 
 
 const App = () => {
-    return <h1>Hello!</h1>
+    console.log('App run')
+    return (
+        <Router>
+            <section>
+                <div>
+                    <Header />
+                    <LastThreeItemsSlider />
+                    Body
+                </div>
+            </section>
+        </Router>
+    )
 }
 
 export default App;
