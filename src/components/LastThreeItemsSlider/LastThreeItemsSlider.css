@@ -23,8 +23,6 @@
 }
 
 .article-meta {
-  /*margin-top: auto;*/
-  /*bottom: 200px;*/
   color: white;
   bottom: 20%;
   position: absolute;
@@ -70,3 +68,6 @@
   opacity: 1;
 }
 
+@media screen and (max-width: 768px){
+
+}

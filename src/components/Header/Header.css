@@ -1,5 +1,6 @@
 .navbar {
-  background: linear-gradient(90deg, rgb(83, 83, 83) 0%, rgb(86, 86, 86));
+  position: sticky;
+  background: linear-gradient(90deg, rgb(86, 86, 86) 0%, rgb(196, 196, 196));
   height: 80px;
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -7,6 +8,8 @@
       "a b";
   align-items: start;
   font-size: 1.2rem;
+
+  padding: 0 15px;
 }
 
 .navbar li {
@@ -14,7 +17,6 @@
 }
 
 .navbar-logo {
-  margin-left: 20px;
   cursor: pointer;
   height: 3.4rem;
 }
@@ -42,7 +44,6 @@
   grid-template-columns: repeat(5, auto);
   justify-content: end;
   padding-top: 1.6rem;
-  margin-right: 2rem;
 }
 
 .nav-link {
@@ -89,6 +90,34 @@
   color: #ffffff;
 }
 
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+span {
+  position: absolute;
+  background: white;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: animate 1s linear infinite;
+}
+
+@keyframes animate {
+  0%
+  {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  100%
+  {
+    width: 500px;
+    height: 500px;
+    opacity: 0.5;
+  }
+}
 
 @media screen and (max-width: 768px) {
   .navbar {
@@ -185,9 +214,34 @@
     width: 80%;
   }
 }
+
 @media screen and (max-width: 320px) {
   .navbar-logo {
     margin-left: 15px;
     height: 3rem;
+  }
+}
+
+@media (min-width: 575.98px){
+  .navbar {
+    padding: 0 calc(50% - 270px);
+  }
+}
+
+@media (min-width: 767.98px){
+  .navbar {
+    padding: 0 calc(50% - 360px);
+  }
+}
+
+@media (min-width: 991.98px) {
+  .navbar {
+    padding: 0 calc(50% - 480px);
+  }
+}
+
+@media (min-width: 1199.98px){
+  .navbar {
+    padding: 0 calc(50% - 590px);
   }
 }

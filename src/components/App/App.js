@@ -10,13 +10,13 @@ const App = () => {
   console.log('App run')
   return (
     <Router>
-      <section>
-        <div>
-          <Header />
+      <div>
+        <Header />
+        <section>
           <LastThreeItemsSlider />
           Body
-        </div>
-      </section>
+        </section>
+      </div>
     </Router>
   )
 }
