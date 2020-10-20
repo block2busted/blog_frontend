@@ -11,13 +11,11 @@ import App from "./components/App";
 const blogAPIService = new BlogAPIService();
 
 ReactDOM.render(
-    <Provider store={store}>
-
-            <BlogServiceProvider value={blogAPIService}>
-                <Router>
-                    <App />
-                </Router>
-            </BlogServiceProvider>
-
-    </Provider>, document.getElementById('root')
+  <Provider store={store}>
+    <BlogServiceProvider value={blogAPIService}>
+      <Router>
+        <App />
+      </Router>
+    </BlogServiceProvider>
+  </Provider>, document.getElementById('root')
 )

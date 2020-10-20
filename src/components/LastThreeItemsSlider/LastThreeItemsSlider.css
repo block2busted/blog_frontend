@@ -1,69 +1,72 @@
 .last-articles-bar {
-    padding-top: 5px;
-    overflow: hidden;
+  padding-top: 5px;
+  overflow: hidden;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 2fr 1fr;
 }
 
 .article-background-image {
-    /*height: 100%;*/
-    /*width: 100%;*/
-    max-width: 100%;
-    max-height: 100%;
-    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2),
-                0 2px 8px 0 rgba(0,0,0,0.19);
-    transition: 1.5s;
-}
-
-.article-details-container:hover .article-background-image{
-    transform: scale(1.1);
-    /*transition: 1.5s;*/
-}
-
-.main-article {
-    width: 66%;
-    float:left;
-}
-
-.minor-articles {
-    left: 1%;
-    width: 32.6%;
-    float: right;
-}
-
-.main-article-preview {
-
-}
-
-.minor-article-preview {
-
-}
-
-
-.article-background-image {
-
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2),
+              0 2px 8px 0 rgba(0,0,0,0.19);
+  transition: 1.5s;
 }
 
 .article-details-container {
-    position: relative;
-    text-align: center;
-    color: white;
-    display: inline-block;
-    overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-flow: column nowrap;
+  position: relative;
+  overflow: hidden;
 }
 
-.article-details-content {
-    position: absolute;
-    top: 20%;
-    right: 10%;
-    /*transform: translate(-50%, -50%);*/
+.article-meta {
+  /*margin-top: auto;*/
+  /*bottom: 200px;*/
+  color: white;
+  bottom: 20%;
+  position: absolute;
+  transition: 1.5s;
+  transform: translateY(100%);
 }
 
-.article-title {
-    position: absolute;
-    top: 70%;
-    left: 10%;
-    /*background-color: rgba(99, 93, 93, 0.7);*/
+.article-title-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  transition: 1.5s;
+  transform: translateY(-100%);
 }
 
-.datetime-created {
-    background-color: rgba(99, 93, 93, 0.7);
+.article-description {
+  text-align: left;
+  padding: 10px;
+  transition: 1.5s;
+  opacity: 0;
+  flex: 1;
 }
+
+.minor-article-preview .article-details-container .article-meta{
+  bottom: 25%;
+}
+
+.article-details-container:hover .article-background-image{
+  transform: scale(1.1);
+}
+
+.article-details-container:hover .article-meta {
+  bottom: 0;
+  transform: translateY(0);
+}
+
+.article-details-container:hover .article-title-link {
+  color: red;
+  transform: translateY(0%);
+}
+
+.article-details-container:hover .article-description {
+  opacity: 1;
+}
+

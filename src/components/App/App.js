@@ -7,18 +7,18 @@ import "./App.css";
 
 
 const App = () => {
-    console.log('App run')
-    return (
-        <Router>
-            <section>
-                <div>
-                    <Header />
-                    <LastThreeItemsSlider />
-                    Body
-                </div>
-            </section>
-        </Router>
-    )
+  console.log('App run')
+  return (
+    <Router>
+      <section>
+        <div>
+          <Header />
+          <LastThreeItemsSlider />
+          Body
+        </div>
+      </section>
+    </Router>
+  )
 }
 
 export default App;
