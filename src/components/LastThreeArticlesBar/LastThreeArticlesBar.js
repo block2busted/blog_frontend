@@ -1,13 +1,13 @@
 import React, {Component} from "react";
 
-import "./LastThreeItemsSlider.css";
+import "./LastThreeArticlesBar.css";
 
 import img1 from "./image1.jpg";
 import img2 from "./image2.jpg";
 import img3 from "./image3.jpg";
 
 
-export default class LastThreeItemsSlider extends Component {
+export default class LastThreeArticlesBar extends Component {
   render() {
     return (
       <div className="last-articles-bar">

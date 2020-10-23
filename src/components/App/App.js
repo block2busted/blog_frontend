@@ -1,20 +1,20 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Header from "../Header";
-import LastThreeItemsSlider from "../LastThreeItemsSlider";
+import LastThreeArticlesBar from "../LastThreeArticlesBar";
 
 import "./App.css";
+import HomePageBody from "../HomePageBody";
 
 
 const App = () => {
-  console.log('App run')
   return (
     <Router>
       <div>
         <Header />
         <section>
-          <LastThreeItemsSlider />
-          Body
+          <LastThreeArticlesBar />
+          <HomePageBody />
         </section>
       </div>
     </Router>

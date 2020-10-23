@@ -1,0 +1,50 @@
+.categories-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+.categories-list li .btn {
+  outline: none;
+  border-radius: 4px;
+  padding: 8px 20px;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, rgb(196, 196, 196) 0%, rgb(188, 188, 188));
+}
+
+.categories-list. li .btn:hover {
+  cursor: pointer;
+  background-color: #727272;
+  transition: all 0.3s ease-out;
+}
+
+.categories-list. li .btn:hover {
+  color: white;
+}
+
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes animate {
+  0%
+  {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  100%
+  {
+    width: 500px;
+    height: 500px;
+    opacity: 0.5;
+  }
+}

@@ -1,21 +1,11 @@
 import React from "react";
 import {FaBars, FaTimes} from "react-icons/fa"
+import RippleSpan from "../RippleSpan";
 
-import {MenuItemsButtons, MenuItemsLinks} from "./MenuItemsElements";
+import { menuItemsButtons, menuItemsLinks} from "./menuItemsElements";
 import imgLogo from "./logo.png";
 
 import "./Header.css"
-
-const RippleSpan = ({ripple}) => {
-    const rippleStyle = {
-        left: `${ripple.x}px`,
-        top: `${ripple.y}px`
-      };
-    return (
-      <span style={rippleStyle}>
-      </span>
-    )
-  }
 
 
 export default class Header extends React.Component {
@@ -29,10 +19,10 @@ export default class Header extends React.Component {
     this.setState({toggleClicked: !this.state.toggleClicked})
   };
 
-  clickedButton = (type) => {
+  clickedButton = (buttonType) => {
     clearTimeout(this.state.timerId)
     const newRipple = {
-      type: type,
+      item: buttonType,
       x: event.clientX - event.target.offsetLeft,
       y: event.clientY - event.target.offsetTop
     };
@@ -40,7 +30,6 @@ export default class Header extends React.Component {
     this.setState({
       ripple: newRipple
     });
-
 
     this.state.timerId = setTimeout(() => {
         this.setState({
@@ -50,9 +39,8 @@ export default class Header extends React.Component {
       }, 1000)
   };
 
-
   render() {
-    const MenuLinks = MenuItemsLinks.map((item, index) => {
+    const MenuLinks = menuItemsLinks.map((item, index) => {
       return (
         <li className="nav-link-li" key={index}>
           <a className={item.cName} href={item.url}>
@@ -62,7 +50,7 @@ export default class Header extends React.Component {
       )
     })
 
-    const MenuButtons = MenuItemsButtons.map((item, index) => {
+    const MenuButtons = menuItemsButtons.map((item, index) => {
       return (
         <li key={index}>
           <button
@@ -70,7 +58,7 @@ export default class Header extends React.Component {
             onClick={(event) => this.clickedButton(item.type)}
           >
             {item.label}
-            {this.state.ripple.type === item.type ?
+            {this.state.ripple.item === item.type ?
               <RippleSpan ripple={this.state.ripple} />
               : null}
           </button>

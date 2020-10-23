@@ -1,4 +1,4 @@
-const MenuItemsLinks = [
+const menuItemsLinks = [
   {
     label: 'Статьи',
     url: '#',
@@ -11,7 +11,7 @@ const MenuItemsLinks = [
   }
 ]
 
-const MenuItemsButtons = [
+const menuItemsButtons = [
   {
     type: 'login',
     label: 'Войти',
@@ -27,6 +27,6 @@ const MenuItemsButtons = [
 ]
 
 export {
-  MenuItemsLinks,
-  MenuItemsButtons
+  menuItemsLinks,
+  menuItemsButtons
 }

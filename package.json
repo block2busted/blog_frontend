@@ -27,13 +27,15 @@
     "style-loader": "^2.0.0",
     "webpack": "^5.1.2",
     "webpack-cli": "^4.0.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-serve": "^3.2.0"
   },
   "dependencies": {
     "core-js": "^3.6.5",
     "react": "^16.14.0",
     "react-datetime": "^3.0.4",
     "react-dom": "^16.14.0",
+    "react-hot-loader": "^4.13.0",
     "react-icons": "^3.11.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
