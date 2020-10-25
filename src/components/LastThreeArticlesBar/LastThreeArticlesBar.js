@@ -1,5 +1,8 @@
-import React, {Component} from "react";
-
+import React, { Component } from "react";
+import { fetchArticleList } from "../../actions"
+import { connect } from "react-redux";
+import { withBlogService } from "../hoc"
+import { compose } from "../../utils";
 import "./LastThreeArticlesBar.css";
 
 import img1 from "./image1.jpg";
@@ -7,8 +10,15 @@ import img2 from "./image2.jpg";
 import img3 from "./image3.jpg";
 
 
-export default class LastThreeArticlesBar extends Component {
+class LastThreeArticlesBar extends Component {
+  componentDidMount() {
+    console.log(this.props, 'props')
+    this.props.fetchArticleList();
+  }
+
   render() {
+    const { articleList, loading, error } = this.props;
+    console.log(articleList, 'articleList')
     return (
       <div className="last-articles-bar">
         <div className="main-article">
@@ -70,3 +80,22 @@ export default class LastThreeArticlesBar extends Component {
     )
   }
 }
+
+const mapStateToProps = ({ articleList: { articleList, loading, error } }) => {
+  return {
+    articleList: articleList,
+    loading: loading,
+    error: error
+  }
+};
+
+const mapDispatchToProps = (dispatch, { blogAPIService } ) => {
+  return {
+    fetchArticleList: fetchArticleList(dispatch, blogAPIService)
+  }
+};
+
+export default compose(
+  withBlogService(),
+  connect(mapStateToProps, mapDispatchToProps)
+)(LastThreeArticlesBar);
