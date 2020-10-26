@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const path = require('path');
 
 module.exports = {
@@ -9,6 +10,7 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, './public')
     },
+  stats: 'errors-only',
   module: {
     rules: [
       {
@@ -49,6 +51,13 @@ module.exports = {
     hot: true,
     open: "Google Chrome",
     host: "127.0.0.1",
-    port: "3000"
+    port: "3000",
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:3000',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   }
 }

@@ -1,34 +1,42 @@
 import React, { Component } from "react";
+import ErrorIndicator from "../ErrorIndicator";
+import Spinner from "../Spinner";
 import { fetchArticleList } from "../../actions"
 import { connect } from "react-redux";
 import { withBlogService } from "../hoc"
 import { compose } from "../../utils";
 import "./LastThreeArticlesBar.css";
 
-import img1 from "./image1.jpg";
-import img2 from "./image2.jpg";
-import img3 from "./image3.jpg";
-
 
 class LastThreeArticlesBar extends Component {
   componentDidMount() {
-    console.log(this.props, 'props')
     this.props.fetchArticleList();
   }
 
   render() {
     const { articleList, loading, error } = this.props;
     console.log(articleList, 'articleList')
+
+    if (error) {
+      return <ErrorIndicator/>
+    }
+
+    if (loading) {
+      return <Spinner />
+    }
+
+    console.log(articleList, 'articlessss!!!')
+
     return (
       <div className="last-articles-bar">
         <div className="main-article">
           <div className="main-article-preview">
             <div className="article-details-container">
-              <img className="article-background-image" src={img1} alt="article-background"/>
+              <img className="article-background-image" src={articleList[0].categoryImage} alt="article-background"/>
               <div className="article-meta">
                 <a href="" className="article-title-link">
                   <h1>
-                    Django Rest very strong framework.
+                    {articleList[0].title}
                   </h1>
                 </a>
                 <div className="article-description">
@@ -43,11 +51,11 @@ class LastThreeArticlesBar extends Component {
         <div className="minor-articles">
           <div className="minor-article-preview">
             <div className="article-details-container">
-              <img className="article-background-image" src={img2} alt="article-background"/>
+              <img className="article-background-image" src={articleList[1].categoryImage} alt="article-background"/>
               <div className="article-meta">
                 <a href="" className="article-title-link">
                   <h4>
-                    React js top library for frontend.
+                    {articleList[1].title}
                   </h4>
                 </a>
                 <div className="article-description">
@@ -60,11 +68,11 @@ class LastThreeArticlesBar extends Component {
           </div>
           <div className="minor-article-preview">
             <div className="article-details-container">
-              <img className="article-background-image" src={img3} alt="article-background"/>
+              <img className="article-background-image" src={articleList[2].categoryImage} alt="article-background"/>
               <div className="article-meta">
                 <a href="" className="article-title-link">
                   <h4>
-                    Python regulars...
+                    {articleList[2].title}
                   </h4>
                 </a>
                 <div className="article-description">

@@ -1,22 +1,42 @@
 import React, {Component} from "react";
+import ErrorIndicator from "../ErrorIndicator";
+import Spinner from "../Spinner";
+import { fetchArticleList } from "../../actions"
+import { connect } from "react-redux";
+import { withBlogService } from "../hoc"
+import { compose } from "../../utils";
+
 import { FaClock, FaComment, FaEye } from "react-icons/all";
 
 import "./BestArticleList.css";
-import bestArticleElements from "./bestArticleElements";
 
 
-export default class BestArticleList extends Component {
+class BestArticleList extends Component {
   render() {
-    const articlesPreviewItems = bestArticleElements.map((item, index) => {
+    const { articleList, loading, error } = this.props;
+
+    if (error) {
+      return <ErrorIndicator />
+    }
+
+    if (loading) {
+      return <Spinner />
+    }
+
+    const articlesPreviewItems = articleList
+      .sort((a, b) => {
+        return b.viewsCount - a.viewsCount
+      })
+      .map((item, index) => {
       return (
         <div className="best-article-preview" key={index}>
-          <img src={item.smallImage} className="article-small-image" alt=""/>
+          <img src={item.categoryImage} className="article-small-image" alt=""/>
           <div className="best-article-meta">
             <div className="best-article-title">
               {item.title}
             </div>
             <div className="best-article-description">
-              {item.description}
+              {item.content}
             </div>
             <div className="best-article-info">
               <div className="best-article-date">
@@ -43,3 +63,22 @@ export default class BestArticleList extends Component {
     )
   }
 }
+
+const mapStateToProps = ({ articleList: { articleList, loading, error } }) => {
+  return {
+    articleList: articleList,
+    loading: loading,
+    error: error
+  }
+};
+
+const mapDispatchToProps = (dispatch, { blogAPIService } ) => {
+  return {
+    fetchArticleList: fetchArticleList(dispatch, blogAPIService)
+  }
+};
+
+export default compose(
+  withBlogService(),
+  connect(mapStateToProps, mapDispatchToProps)
+)(BestArticleList);
