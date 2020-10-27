@@ -5,6 +5,7 @@ import { fetchArticleList } from "../../actions"
 import { connect } from "react-redux";
 import { withBlogService } from "../hoc"
 import { compose } from "../../utils";
+
 import "./LastThreeArticlesBar.css";
 
 
@@ -15,17 +16,14 @@ class LastThreeArticlesBar extends Component {
 
   render() {
     const { articleList, loading, error } = this.props;
-    console.log(articleList, 'articleList')
 
     if (error) {
-      return <ErrorIndicator/>
+      return <ErrorIndicator />
     }
 
     if (loading) {
       return <Spinner />
     }
-
-    console.log(articleList, 'articlessss!!!')
 
     return (
       <div className="last-articles-bar">

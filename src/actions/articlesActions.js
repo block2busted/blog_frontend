@@ -23,7 +23,6 @@ const fetchArticleList = (dispatch, blogAPIService) => () => {
   blogAPIService.getArticleList()
     .then((data) => dispatch(articleListLoaded(data)))
     .catch((error) => dispatch(articleListError(error)));
-  // console.log('AF')
 };
 
 export {

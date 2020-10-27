@@ -1,45 +1,24 @@
 import React from "react";
-import {FaBars, FaTimes} from "react-icons/fa"
+import { FaBars, FaTimes } from "react-icons/fa";
 import RippleSpan from "../RippleSpan";
-
+import RippleButton from "../RippleButton";
 import { menuItemsButtons, menuItemsLinks} from "./menuItemsElements";
+
+import { onToggleClicked } from "../../actions"
+import { connect } from "react-redux";
+import { compose } from "../../utils";
+
 import imgLogo from "./logo.png";
+import "./Header.css";
 
-import "./Header.css"
 
-
-export default class Header extends React.Component {
-  state = {
-    toggleClicked: false,
-    ripple: {},
-    timerId: null
-  };
-
-  toggleClick = () => {
-    this.setState({toggleClicked: !this.state.toggleClicked})
-  };
-
-  clickedButton = (buttonType) => {
-    clearTimeout(this.state.timerId)
-    const newRipple = {
-      item: buttonType,
-      x: event.clientX - event.target.offsetLeft,
-      y: event.clientY - event.target.offsetTop
-    };
-
-    this.setState({
-      ripple: newRipple
-    });
-
-    this.state.timerId = setTimeout(() => {
-        this.setState({
-          timerId: null,
-          ripple: {}
-        })
-      }, 1000)
-  };
+class Header extends React.Component {
 
   render() {
+    console.log(this.props, 'props')
+
+    const { toggleClicked, onToggleClicked } = this.props;
+
     const MenuLinks = menuItemsLinks.map((item, index) => {
       return (
         <li className="nav-link-li" key={index}>
@@ -48,23 +27,15 @@ export default class Header extends React.Component {
           </a>
         </li>
       )
-    })
+    });
 
     const MenuButtons = menuItemsButtons.map((item, index) => {
       return (
         <li key={index}>
-          <button
-            className={item.cName}
-            onClick={(event) => this.clickedButton(item.type)}
-          >
-            {item.label}
-            {this.state.ripple.item === item.type ?
-              <RippleSpan ripple={this.state.ripple} />
-              : null}
-          </button>
+          <RippleButton item={item}/>
         </li>
       )
-    })
+    });
 
     return (
       <header className="navbar">
@@ -75,14 +46,13 @@ export default class Header extends React.Component {
         </a>
         <div
           className="toggle-icon"
-          onClick={this.toggleClick}>
-          {this.state.toggleClicked ? <FaTimes/> : <FaBars/>}
+          onClick={onToggleClicked}>
+          {toggleClicked ? <FaTimes/> : <FaBars/>}
         </div>
-        <div className={this.state.toggleClicked ? "nav-menu active" : "nav-menu"}>
+        <div className={toggleClicked ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-links">
             {MenuLinks}
           </ul>
-          {/*<input type="text"/>*/}
           <ul className="nav-menu-buttons">
             {MenuButtons}
           </ul>
@@ -91,3 +61,20 @@ export default class Header extends React.Component {
     )
   }
 }
+
+
+const mapStateToProps = ({ headerState: { toggleClicked } }) => {
+  return {
+    toggleClicked: toggleClicked
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onToggleClicked: () => dispatch(onToggleClicked())
+  }
+};
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(Header);
