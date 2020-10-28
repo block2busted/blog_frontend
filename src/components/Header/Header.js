@@ -1,6 +1,5 @@
 import React from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import RippleSpan from "../RippleSpan";
 import RippleButton from "../RippleButton";
 import { menuItemsButtons, menuItemsLinks} from "./menuItemsElements";
 
@@ -15,9 +14,7 @@ import "./Header.css";
 class Header extends React.Component {
 
   render() {
-    console.log(this.props, 'props')
-
-    const { toggleClicked, onToggleClicked } = this.props;
+    const { toggleClicked } = this.props;
 
     const MenuLinks = menuItemsLinks.map((item, index) => {
       return (
@@ -46,7 +43,7 @@ class Header extends React.Component {
         </a>
         <div
           className="toggle-icon"
-          onClick={onToggleClicked}>
+          onClick={this.props.onToggleClicked}>
           {toggleClicked ? <FaTimes/> : <FaBars/>}
         </div>
         <div className={toggleClicked ? "nav-menu active" : "nav-menu"}>
@@ -69,7 +66,7 @@ const mapStateToProps = ({ headerState: { toggleClicked } }) => {
   }
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onToggleClicked: () => dispatch(onToggleClicked())
   }

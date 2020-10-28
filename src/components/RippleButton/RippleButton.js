@@ -1,53 +1,45 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { compose } from "../../utils";
+import { rippleButtonActivate } from "../../actions";
 
-import "./RippleButton.css";
 import RippleSpan from "../RippleSpan";
 
+import "./RippleButton.css";
+
 class RippleButton extends Component {
-  state = {
-    ripple: {},
-    timerId: null
-  };
-
-  clickedButton = (buttonType) => {
-    clearTimeout(this.state.timerId)
-
-    const newRipple = {
-      type: buttonType,
-      x: event.clientX - event.target.offsetLeft,
-      y: event.clientY - event.target.offsetTop
-    };
-
-    this.setState({
-      ...this.state.ripple,
-      ripple: newRipple
-    });
-
-    this.state.timerId = setTimeout(() => {
-        this.setState({
-          timerId: null,
-          ripple: {}
-        })
-      }, 1000)
-  };
-
-
   render() {
-    const { item } = this.props
+    const { item, ripple } = this.props
+
+    console.log(this.props, 'buttonProps')
 
     return (
       <button
         className={item.cName}
-        onClick={() => this.clickedButton(item.type)}
+        onClick={() => this.props.rippleButtonActivate(item.type)}
       >
         {item.label}
-        {this.state.ripple.type === item.type ?
-          <RippleSpan ripple={this.state.ripple} />
-          : null}
+        { ripple.type === item.type ?
+          <RippleSpan ripple={ripple} />
+          : null }
       </button>
     )
   }
 }
 
-export default RippleButton;
+const mapStateToProps = ({ buttonState: { ripple } }) => {
+  return {
+    ripple: ripple
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    rippleButtonActivate: (itemType) => dispatch(rippleButtonActivate(itemType))
+  }
+}
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(RippleButton);
 
