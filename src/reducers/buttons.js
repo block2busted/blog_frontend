@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 const updateButton = (state, action) => {
   if (state === undefined) {
     return {
@@ -19,13 +21,10 @@ const updateButton = (state, action) => {
         ripple: newRipple
       }
     case 'RIPPLE_BUTTON_OFF':
-      setTimeout(() => {
-        return {
-          timerId: null,
-          ripple: {}
-        }
-      }, 1000)
-      break
+      return {
+        timerId: null,
+        ripple: {}
+      }
     default:
       return state.buttonState
   }

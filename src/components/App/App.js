@@ -1,10 +1,10 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Header from "../Header";
-import LastThreeArticlesBar from "../LastThreeArticlesBar";
 
 import "./App.css";
-import HomePageBody from "../HomePageBody";
+import HomePage from "../pages/HomePage";
+import ArticleListPage from "../pages/ArticleListPage";
 
 
 const App = () => {
@@ -13,8 +13,22 @@ const App = () => {
       <div>
         <Header />
         <section>
-          <LastThreeArticlesBar />
-          <HomePageBody />
+          <Switch>
+            <Route
+              path="/"
+              component={HomePage}
+              exact
+            />
+            <Route
+              path="/articles/"
+              component={ArticleListPage}
+            />
+            <Route
+              render={() => {
+                return <h3>Page not found!</h3>
+              }}
+            />
+          </Switch>
         </section>
       </div>
     </Router>

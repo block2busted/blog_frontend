@@ -13,7 +13,7 @@ import "./BestArticleList.css";
 
 class BestArticleList extends Component {
   render() {
-    const { articleList, loading, error } = this.props;
+    const { articleList, loading, error, itemsCount } = this.props;
 
     if (error) {
       return <ErrorIndicator />
@@ -23,7 +23,7 @@ class BestArticleList extends Component {
       return <Spinner />
     }
 
-    const articlesPreviewItems = articleList
+    const articlesPreviewItems = articleList.slice(0, itemsCount)
       .sort((a, b) => {
         return b.viewsCount - a.viewsCount
       })

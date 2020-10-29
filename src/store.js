@@ -8,8 +8,7 @@ const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 // const myAction = (dispatch) => {
 //   setTimeout(() => dispatch({
 //       type: 'DELAY'
-//     }), 1000
-//   )
+//     }), 1000)
 // }
 //
 // store.dispatch(myAction);

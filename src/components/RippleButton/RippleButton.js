@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { compose } from "../../utils";
-import { rippleButtonActivate } from "../../actions";
+import { rippleButtonClicked } from "../../actions";
 
 import RippleSpan from "../RippleSpan";
 
@@ -11,12 +11,10 @@ class RippleButton extends Component {
   render() {
     const { item, ripple } = this.props
 
-    console.log(this.props, 'buttonProps')
-
     return (
       <button
         className={item.cName}
-        onClick={() => this.props.rippleButtonActivate(item.type)}
+        onClick={() => this.props.rippleButtonClicked(item.type)}
       >
         {item.label}
         { ripple.type === item.type ?
@@ -35,7 +33,7 @@ const mapStateToProps = ({ buttonState: { ripple } }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    rippleButtonActivate: (itemType) => dispatch(rippleButtonActivate(itemType))
+    rippleButtonClicked: (itemType) => rippleButtonClicked(dispatch)(itemType)
   }
 }
 
